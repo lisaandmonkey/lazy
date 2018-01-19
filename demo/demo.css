@@ -1,0 +1,27 @@
+/*
+ * Author: SunJingKe
+ * Email: uninge@qq.com
+ * Date: 2018.01.18
+ * Time: 16:23
+*/
+.pic-wrapper {
+    max-height: 600px;
+    overflow-y: auto;
+    border: 2px dashed #cccccc;
+    padding: 20px 0;
+}
+.img,
+.bg-img {
+    width: 288px;
+    height: 162px;
+    display: block;
+    margin: 20px auto 0;
+}
+.img {
+    border: 2px dashed #0085fa;
+}
+.bg-img {
+    background-image: url("./assets/loading.png");
+    border: 2px dashed #ff6700;
+    background-size: cover;
+}
