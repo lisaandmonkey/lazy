@@ -32,7 +32,7 @@
 <script>
     Lazy.init({
         // root: '.s-pic-wrapper', // 滚动区域根元素，默认document
-        debounce: true,            // 函数节流
+        throttle: true,            // 函数节流
         delay: 200,                // 节流延时
         unload: false,             // 图片重载
         offset: 200,               // 懒加载距视口距离
@@ -58,7 +58,7 @@
 
 滚动区域根元素
 
-* debounce: Type: `Boolean`, Default: `true`
+* throttle: Type: `Boolean`, Default: `true`
 
 是否开启函数节流
 

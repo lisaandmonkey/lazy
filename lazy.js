@@ -21,7 +21,7 @@
     // 节流延迟时间
     var delay = 150;
     // 是否开启节流
-    var debounce = true;
+    var throttle = true;
     // 是否开启图片懒加载图片的重载。解释一下：就是图片离开懒加载区域要把图片状态复原，再次进入懒加载区域要在视觉上呈现懒加载效果
     // 先呵呵一下这个功能，正常的我肯定想不到这么个抽风的需求，谁让我曾经碰到过一个抽风的产品经理呢，实现不难，这里也顺便实现一下
     var unload = false;
@@ -51,8 +51,8 @@
     /**
      * 节流函数
      */
-    var onDebounceRender = function () {
-        if (!debounce) {
+    var onThrottleRender = function () {
+        if (!throttle) {
             Lazy.render();
         } else {
             clearTimeout(timer);
@@ -72,7 +72,7 @@
      * @param {Number} options.offsetRight - 懒加载阈值【右】
      * @param {Number} options.offsetBottom - 懒加载阈值【下】
      * @param {Number} options.offsetLeft - 懒加载阈值【左】
-     * @param {Boolean} options.debounce - 是否开启函数节流
+     * @param {Boolean} options.throttle - 是否开启函数节流
      * @param {Number} options.delay - 函数节流时间阈值
      * @param {Boolean} options.unload - 图片重载
      * @param {Function} options.callback - 懒加载操作完成时的回掉函数
@@ -80,7 +80,7 @@
     Lazy.init = function (options) {
         options = options || {};
         global = document.querySelector(options.root) || global;
-        debounce = options.debounce !== false;
+        throttle = options.throttle !== false;
         delay = options.delay || delay;
         unload = options.unload || unload;
         callback = options.callback || callback;
@@ -91,15 +91,15 @@
             b: (global.innerHeight || document.documentElement.clientHeight) + (options.offsetBottom || options.offset || 0),
             l: 0 - (options.offsetLeft || options.offset || 0)
         };
-        // 这里提前调用一次，因为如果debounce为true，load之后会有最低250ms的延迟
+        // 这里提前调用一次，因为如果throttle为true，load之后会有最低250ms的延迟
         Lazy.render();
         // 绑定事件
         if (global.addEventListener) {
-            global.addEventListener('load', onDebounceRender, false);
-            global.addEventListener('scroll', onDebounceRender, false);
+            global.addEventListener('load', onThrottleRender, false);
+            global.addEventListener('scroll', onThrottleRender, false);
         } else {
-            global.attachEvent('onload', onDebounceRender);
-            global.attachEvent('onscroll', onDebounceRender);
+            global.attachEvent('onload', onThrottleRender);
+            global.attachEvent('onscroll', onThrottleRender);
         }
     };
     /**
@@ -156,9 +156,9 @@
      */
     Lazy.destroy = function () {
         if (document.removeEventListener) {
-            global.removeEventListener('scroll', onDebounceRender);
+            global.removeEventListener('scroll', onThrottleRender);
         } else {
-            global.detachEvent('onscroll', onDebounceRender);
+            global.detachEvent('onscroll', onThrottleRender);
         }
         clearTimeout(timer);
     };
