@@ -32,8 +32,8 @@
 <script>
     Lazy.init({
         // root: '.s-pic-wrapper', // 滚动区域根元素，默认document
-        throttle: true,            // 函数节流
-        delay: 200,                // 节流延时
+        throttle: true,            // 函数防抖
+        delay: 200,                // 防抖延时
         unload: false,             // 图片重载
         offset: 200,               // 懒加载距视口距离
         offsetTop: 200,            // 可选，默认offset
@@ -60,11 +60,11 @@
 
 * throttle: Type: `Boolean`, Default: `true`
 
-是否开启函数节流
+是否开启函数防抖
 
 * delay: Type `Number`, Default: `150`
 
-节流函数执行延时时间
+防抖函数执行延时时间
 
 * unload: Type: `Boolean`, Default: `false`
 

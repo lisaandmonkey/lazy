@@ -18,9 +18,9 @@
     var Lazy = {};
     // 计时器
     var timer = null;
-    // 节流延迟时间
+    // 防抖延迟时间
     var delay = 150;
-    // 是否开启节流
+    // 是否开启防抖
     var throttle = true;
     // 是否开启图片懒加载图片的重载。解释一下：就是图片离开懒加载区域要把图片状态复原，再次进入懒加载区域要在视觉上呈现懒加载效果
     // 先呵呵一下这个功能，正常的我肯定想不到这么个抽风的需求，谁让我曾经碰到过一个抽风的产品经理呢，实现不难，这里也顺便实现一下
@@ -49,7 +49,7 @@
         return (eleRect.top <= boxRect.b && eleRect.right >= boxRect.l && eleRect.bottom >= boxRect.t && eleRect.left <= boxRect.r);
     };
     /**
-     * 节流函数
+     * 防抖函数
      */
     var onThrottleRender = function () {
         if (!throttle) {
@@ -72,8 +72,8 @@
      * @param {Number} options.offsetRight - 懒加载阈值【右】
      * @param {Number} options.offsetBottom - 懒加载阈值【下】
      * @param {Number} options.offsetLeft - 懒加载阈值【左】
-     * @param {Boolean} options.throttle - 是否开启函数节流
-     * @param {Number} options.delay - 函数节流时间阈值
+     * @param {Boolean} options.throttle - 是否开启函数防抖
+     * @param {Number} options.delay - 函数防抖时间阈值
      * @param {Boolean} options.unload - 图片重载
      * @param {Function} options.callback - 懒加载操作完成时的回掉函数
      */
